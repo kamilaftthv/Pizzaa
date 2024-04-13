@@ -1,0 +1,162 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<style>
+    .card {
+        border: 1px solid #000000;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@pizza1.Image">
+            <div class="card-body">
+                <h5 class="card-title">Пицца Пепперони</h5>
+                <p class="card-text">Пеперо́ни — острая разновидность салями итало-американского происхождения, а также название пиццы американского происхождения.</p>
+                <p class="card-text">Цена: 350 руб</p>
+                <button @onclick="AddPizza1ToCart" class="btn btn-primary">В корзину</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@pizza3.Image">
+            <div class="card-body">
+                <h5 class="card-title">Ветчина и Грибы</h5>
+                <p class="card-text">Пицца "Ветчина Грибы" - это идеальное сочетание томатного соуса, сыра моцарелла, нарезанной ветчины, ароматных грибов и вкусных маслин. </p>
+                <p class="card-text">Цена: 320 руб</p>
+                <button @onclick="AddPizza2ToCart" class="btn btn-primary">В корзину</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@pizza2.Image">
+            <div class="card-body">
+                <h5 class="card-title">Сырная Пицца</h5>
+                <p class="card-text">Вкусная, ароматная, нежная - один из лучших вариантов приготовления сырной пиццы! Пробуйте!</p>
+                <p class="card-text">Цена: 300 руб</p>
+                <button @onclick="AddPizza3ToCart" class="btn btn-primary">В корзину</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@pizza4.Image">
+            <div class="card-body">
+                <h5 class="card-title">Грибная Пицца</h5>
+                <p class="card-text">Пицца Грибная – это вкусная комбинация сливочного сыра, белого и пещерниц грибов, моцареллы, пармезана, черри томатов и базилика.</p>
+                <p class="card-text">Цена: 330 руб</p>
+                <button @onclick="AddPizza4ToCart" class="btn btn-primary">В корзину</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@pizza5.Image">
+            <div class="card-body">
+                <h5 class="card-title">Пицца Цезарь</h5>
+                <p class="card-text">Пицца Цезарь С ветчиной и грибами. Оригинальный и неповторимый вкус, итальянский рецепт, авторский соус из экологически чистых томатов.</p>
+                <p class="card-text">Цена: 370 руб</p>
+                <button @onclick="AddPizza5ToCart" class="btn btn-primary">В корзину</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@pizza6.Image">
+            <div class="card-body">
+                <h5 class="card-title">Гавайская Пицца</h5>
+                <p class="card-text">Гавайская пицца (также ананасовая пицца) — пицца, приготовляемая с использованием белого соуса, сыра, ананасов, курицы и морепродуктов. </p>
+                <p class="card-text">Цена: 400 руб</p>
+                <button @onclick="AddPizza6ToCart" class="btn btn-primary">В корзину</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text">
+    <h5 class="text-black">Итого: @totalPrice</h5>
+    <ul>
+        @foreach (var pizza in selectedPizzas)
+        {
+            <li>@pizza.Name - @pizza.Price руб</li>
+        }
+    </ul>
+</div>
+
+
+@code
+{
+    public class Pizza1
+    {
+        public string Image { get; set; } = "https://s1.eda.ru/StaticContent/Photos/120131085053/171027192707/p_O.jpg";
+    }
+    Pizza1 pizza1 = new Pizza1();
+    public class Pizza2
+    {
+        public string Image { get; set; } = "https://i.ytimg.com/vi/sKPK2gwvjUk/maxresdefault.jpg";
+    }
+    Pizza2 pizza2 = new Pizza2();
+    public class Pizza3
+    {
+        public string Image { get; set; } = "https://www.aiva-cafe.ru/wp-content/uploads/2018/08/%D0%B2%D0%B5%D1%82%D1%87%D0%B8%D0%BD%D0%B0-%D0%B8-%D0%B3%D1%80%D0%B8%D0%B1%D1%8B.jpg";
+    }
+    Pizza3 pizza3 = new Pizza3();
+    public class Pizza4
+    {
+        public string Image { get; set; } = "https://pies-story.ru/images/catalog/big_ru_item_36.jpg";
+    }
+    Pizza4 pizza4 = new Pizza4();
+    public class Pizza5
+    {
+        public string Image { get; set; } = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgWCLUPZ1uIlc0VEjK2SycrUJrfBCV6_f-bbUSa-JWsA&s";
+    }
+    Pizza5 pizza5 = new Pizza5();
+    public class Pizza6
+    {
+        public string Image { get; set; } = "https://cdn.lifehacker.ru/wp-content/uploads/2021/01/1_1611130322-e1611130395948-1280x640.jpg";
+    }
+    Pizza6 pizza6 = new Pizza6();
+    public class PizzaItem
+    {
+        public string Name { get; set; }
+        public int Price { get; set; }
+    }
+
+
+    List<PizzaItem> selectedPizzas = new List<PizzaItem>();
+    int totalPrice = 0;
+    void AddPizzaToCart(string name, int price)
+    {
+        selectedPizzas.Add(new PizzaItem { Name = name, Price = price });
+        totalPrice += price;
+    }
+    void AddPizza1ToCart()
+    {
+        AddPizzaToCart("Пицца Пепперони", 350);
+    }
+    void AddPizza2ToCart()
+    {
+        AddPizzaToCart("Сырная Пицца", 300);
+    }
+    void AddPizza3ToCart()
+    {
+        AddPizzaToCart("Ветчина и Грибы", 320);
+    }
+    void AddPizza4ToCart()
+    {
+        AddPizzaToCart("Грибная", 330);
+    }
+    void AddPizza5ToCart()
+    {
+        AddPizzaToCart("Пицца Цезарь", 370);
+    }
+    void AddPizza6ToCart()
+    {
+        AddPizzaToCart("Гавайская Пицца", 400);
+    }
+}
